@@ -48,9 +48,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -83,32 +83,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo init</div></pre></td></tr></table></figure>
-<h3 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h3><ul>
+        <h2 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h2><ul>
 <li>node.js  </li>
 <li>git  </li>
 <li>github</li>
 </ul>
-<h3 id="着手准备"><a href="#着手准备" class="headerlink" title="着手准备"></a>着手准备</h3><p>  1.首先<a href="https://nodejs.org/en/" target="_blank" rel="external">node.js</a>下载获取必备工具<strong>npm</strong>(不建议使用cnpm，阿里镜像下的hexo包可能不全)。  </p>
+<h2 id="着手准备"><a href="#着手准备" class="headerlink" title="着手准备"></a>着手准备</h2><p>  1.首先<a href="https://nodejs.org/en/" target="_blank" rel="external">node.js</a>下载获取必备工具<strong>npm</strong>(不建议使用cnpm，阿里镜像下的hexo包可能不全)。  </p>
 <p>  2.获取git:Xcode自带git，这部分只需要配置好即可。  </p>
 <p>  3.创建<a href="https://github.com" target="_blank" rel="external">github</a>账号，新建repo，名字格式必须为:<strong>账号+”.github.io”</strong>。</p>
-<h3 id="使用npm"><a href="#使用npm" class="headerlink" title="使用npm"></a>使用npm</h3><p><strong>使用npm中遇到的问题是最多的，我们最后是依照<a href="https://hexo.io" target="_blank" rel="external">Hexo官网</a>的说明完成了其中一部分命令行的键入。</strong>  </p>
-<p>1.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">$ sudo npm install hexo-cli -g</div><div class="line">```  </div><div class="line">  请注意命令中的**sudo**是必备的，mac上会要求键入用户软件安装密码，参照官网的话npm会返回dwrat错误信息。  </div><div class="line">  </div><div class="line">2.</div><div class="line"></div><div class="line">``` bash</div><div class="line">$ hexo init &lt;folder&gt;</div><div class="line">```   </div><div class="line">这一步最早也是报错，是因为这个init命令 在没有folder指定情况下是直接在～目录下创建，mac里这部分指代的路径一般都是用户根目录，hexo不能在非空文件夹下引入配置。所以new folder就能解决问题。  </div><div class="line">  </div><div class="line">3.</div><div class="line"></div><div class="line">``` bash</div><div class="line">$ <span class="built_in">cd</span> &lt;folder&gt;</div><div class="line">```  </div><div class="line">现在让我们进入上一步进行初始化的folder内，当然这也是以后需要与github仓库绑定的文件夹。下一步你就会明白了 。  </div><div class="line">  </div><div class="line">  4.</div><div class="line">  </div><div class="line">  ``` bash</div><div class="line">  $ npm install</div><div class="line">  ``` </div><div class="line">该命令的顺利执行会帮助你引入六个文件 通过ls命令我们可以查到是否完整引入。他们的作用会在待会儿正确配置好小站后慢慢给大家道来。  </div><div class="line">  </div><div class="line">  5.</div><div class="line">  </div><div class="line">  ```bash</div><div class="line">  $ vim _config.yml</div><div class="line">  ``` </div><div class="line">接下来就让我们来配置_config文件，这步是为了将你的blog与github库相关联。需要对_config.yml进行一部分修改，通过vim打开文件后，按i进入插入模式，滑动到最下方deploy部分，最初代码应该是需要更改为这一步需要注意的是请不要少或多一个空格，否则下一步命令的时候会报bad indentationd错误。  </div><div class="line"></div><div class="line">6.</div><div class="line"></div><div class="line">```bash</div><div class="line">$ npm install hexo-deployer-git --save</div><div class="line">```  </div><div class="line">  这一步是帮助hexo通过git来部署我们的项目。  </div><div class="line"> </div><div class="line">7.</div><div class="line"></div><div class="line">``` bash</div><div class="line">$ hexo new <span class="string">"title"</span></div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g</div></pre></td></tr></table></figure>
-<pre><code class="bash">$ hexo d
-</code></pre>
+<h2 id="使用npm"><a href="#使用npm" class="headerlink" title="使用npm"></a>使用npm</h2><p><em>使用npm中遇到的问题是最多的，我们最后是依照<a href="https://hexo.io" target="_blank" rel="external">Hexo官网</a>的说明完成了其中一部分命令行的键入.</em>  </p>
+<p><code>$ sudo npm install hexo-cli -g</code>  </p>
+<p>请注意命令中的<strong>sudo</strong>是必备的，mac上会要求键入用户软件安装密码，参照官网的话npm会返回dwrat错误信息。</p>
+<p><code>$ hexo init &lt;folder&gt;</code>  </p>
+<p>这一步最早也是报错，是因为这个init命令 在没有folder指定情况下是直接在～目录下创建，mac里这部分指代的路径一般都是用户根目录，hexo不能在非空文件夹下引入配置。所以new folder就能解决问题。  </p>
+<p><code>$ cd &lt;folder&gt;</code>  </p>
+<p>  现在让我们进入上一步进行初始化的folder内，当然这也是以后需要与github仓库绑定的文件夹。下一步你就会明白了 。  </p>
+<p><code>$ npm install</code> </p>
+<p>  该命令的顺利执行会帮助你引入六个文件 通过ls命令我们可以查到是否完整引入。他们的作用会在待会儿正确配置好小站后慢慢给大家道来。  </p>
+<p>  <code>$ vim _config.yml</code> </p>
+<p>  接下来就让我们来配置_config文件，这步是为了将你的blog与github库相关联。需要对_config.yml进行一部分修改，通过vim打开文件后，按i进入插入模式，滑动到最下方deploy部分，最初代码应该是需要更改为这一步需要注意的是请不要少或多一个空格，否则下一步命令的时候会报bad indentationd错误。  </p>
+<p><code>$ npm install hexo-deployer-git --save</code>  </p>
+<p>  这一步是帮助hexo通过git来部署我们的项目。  </p>
+<p><code>$ hexo new &quot;title&quot;</code></p>
+<p><code>$ hexo g</code></p>
+<p> <code>$ hexo d</code>  </p>
 <p>  终于可以使用Hexo最出名的三步走动作了，这一系列动作完成从创建新文章md文件到生成静态网页到最后push到github托管等一系列操作。  </p>
-<p>8.</p>
-<pre><code class="bash">$ hexo server
-</code></pre>
+<p><code>$ hexo server</code>  </p>
 <p>  当然如果不打算着急发布的同学们不需要执行最后一步d命令，而是通过server命令能够在localhost：4000端口提前预览网页内容，进行调整之后发布。</p>
-<p>###Hexo文件讲解<br>在hexo为我们提供了很方便搭建框架的同时，如果我们需要进行更多自定义的动作时候，我们也不妨花点时间来对其进行深入点的了解。以下的内容基本都是基于hexo官方说明的翻译，如果有不到位的地方还请大神斧正。</p>
+<h2 id="Hexo文件讲解"><a href="#Hexo文件讲解" class="headerlink" title="Hexo文件讲解"></a>Hexo文件讲解</h2><p>在hexo为我们提供了很方便搭建框架的同时，如果我们需要进行更多自定义的动作时候，我们也不妨花点时间来对其进行深入点的了解。以下的内容基本都是基于hexo官方说明的翻译，如果有不到位的地方还请大神斧正。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/08/Hexo建站学习/" data-id="cj016p7vq0000f2s6sy0uiq5e" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/03/08/Hexo建站学习/" data-id="cj01pjevi0000z1wowswghv8n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -144,7 +151,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/08/test/" data-id="cj016jgr40001dys67bsc9c8g" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/03/08/test/" data-id="cj01pjevq0002z1wo0ee61ieq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -189,7 +196,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/08/hello-world/" data-id="cj016jgqz0000dys6fyvldfq5" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/03/08/hello-world/" data-id="cj01pjevn0001z1wo3n4fsl57" class="article-share-link">Share</a>
       
       
     </footer>
@@ -224,7 +231,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -253,7 +260,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 John Doe<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
