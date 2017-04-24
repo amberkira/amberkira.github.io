@@ -87,12 +87,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Amberkira">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="自定义控件学习初期准备我们在xml中定义的如button／textview等控件在android中一般是存在于android.R.attr.xxxxStyle中的，包含了默认的attr如width，height等，也包含着一些需要用户自定义的类型如text，align等内容。
+我们的自定义控件在最开始可以简单的继承某个类型的控件开始，这里我选择的是EditText。自定义的话一定就设计到自定义的a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义控件学习">
+<meta property="og:url" content="http://yoursite.com/2017/04/24/自定义控件学习/index.html">
 <meta property="og:site_name" content="Amberkira">
+<meta property="og:description" content="自定义控件学习初期准备我们在xml中定义的如button／textview等控件在android中一般是存在于android.R.attr.xxxxStyle中的，包含了默认的attr如width，height等，也包含着一些需要用户自定义的类型如text，align等内容。
+我们的自定义控件在最开始可以简单的继承某个类型的控件开始，这里我选择的是EditText。自定义的话一定就设计到自定义的a">
+<meta property="og:image" content="http://omizc9kwk.bkt.clouddn.com/86F100A7-4A40-4EFF-86A0-93AD1399383C.png">
+<meta property="og:image" content="http://omizc9kwk.bkt.clouddn.com/7E87D2E0-8FB7-4127-AAF9-2D324F96DF2D.png">
+<meta property="og:updated_time" content="2017-04-24T02:29:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Amberkira">
+<meta name="twitter:title" content="自定义控件学习">
+<meta name="twitter:description" content="自定义控件学习初期准备我们在xml中定义的如button／textview等控件在android中一般是存在于android.R.attr.xxxxStyle中的，包含了默认的attr如width，height等，也包含着一些需要用户自定义的类型如text，align等内容。
+我们的自定义控件在最开始可以简单的继承某个类型的控件开始，这里我选择的是EditText。自定义的话一定就设计到自定义的a">
+<meta name="twitter:image" content="http://omizc9kwk.bkt.clouddn.com/86F100A7-4A40-4EFF-86A0-93AD1399383C.png">
 
 
 
@@ -120,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/24/自定义控件学习/"/>
 
 
 
 
 
-  <title> Amberkira </title>
+  <title> 自定义控件学习 | Amberkira </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -151,9 +161,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -236,9 +244,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -268,10 +276,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/04/24/自定义控件学习/" itemprop="url">
-                  自定义控件学习
-                </a>
+                自定义控件学习
               
             
           </h1>
@@ -322,9 +327,7 @@
       
 
       
-        
-          
-            <h1 id="自定义控件学习"><a href="#自定义控件学习" class="headerlink" title="自定义控件学习"></a>自定义控件学习</h1><h2 id="初期准备"><a href="#初期准备" class="headerlink" title="初期准备"></a>初期准备</h2><p>我们在xml中定义的如button／textview等控件在android中一般是存在于android.R.attr.xxxxStyle中的，包含了默认的attr如width，height等，也包含着一些需要用户自定义的类型如text，align等内容。</p>
+        <h1 id="自定义控件学习"><a href="#自定义控件学习" class="headerlink" title="自定义控件学习"></a>自定义控件学习</h1><h2 id="初期准备"><a href="#初期准备" class="headerlink" title="初期准备"></a>初期准备</h2><p>我们在xml中定义的如button／textview等控件在android中一般是存在于android.R.attr.xxxxStyle中的，包含了默认的attr如width，height等，也包含着一些需要用户自定义的类型如text，align等内容。</p>
 <p>我们的自定义控件在最开始可以简单的继承某个类型的控件开始，这里我选择的是<em>EditText</em>。自定义的话一定就设计到自定义的attr那么这部分我们首先就要熟悉android中控件的attr的书写规则。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;resources&gt;</div><div class="line">&lt;declare-styleable name=“your widget name”&gt;</div><div class="line">&lt;!——这是控件自定义属性的名字以及其类型——&gt;</div><div class="line">&lt;!——类型包括integer/dimension/color/string/reference/boolean／枚举类enum/flag/fraction——&gt;</div><div class="line">&lt;attr name=“attr name” format=“入参类型”&gt;&lt;/attr&gt;</div><div class="line">&lt;! ——下面是enum的格式,flag类似——&gt;</div><div class="line">&lt;attr name=“type”&gt;</div><div class="line">&lt;enum name=“type name” value=“1”&gt;</div><div class="line">&lt;/enum&gt;</div><div class="line">&lt;/attr&gt;</div><div class="line">&lt;/declare-styleable&gt;</div><div class="line">&lt;/resources&gt;</div></pre></td></tr></table></figure>
 <p>当然如果愿意了解更多可以看看： <a href="http://www.cnblogs.com/rayray/p/3442026.html" target="_blank" rel="external">【Android】Android自定义属性，attr format取值类型 - Rex.. - 博客园</a></p>
@@ -401,20 +404,27 @@
 <p>###点击事件<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</div><div class="line"><span class="keyword">int</span> x;</div><div class="line"><span class="keyword">if</span>(event.getAction()== MotionEvent.ACTION_UP)&#123;</div><div class="line"><span class="keyword">if</span>(mRightDrawable!=<span class="keyword">null</span>)&#123;</div><div class="line">x = (<span class="keyword">int</span>) event.getX();</div><div class="line"><span class="keyword">if</span>(x&lt;getWidth()-getPaddingRight()&amp;&amp;x&gt;getWidth()-getTotalPaddingRight())&#123;</div><div class="line"><span class="keyword">if</span>(mType==TYPE_CLEAR)&#123;</div><div class="line"><span class="keyword">this</span>.setText(<span class="string">""</span>);</div><div class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(mType==TYPE_PWD_EXPLODE)&#123;</div><div class="line"><span class="keyword">if</span>(isEyeOpen)&#123;</div><div class="line"><span class="keyword">this</span>.setTransformationMethod(PasswordTransformationMethod.getInstance());</div><div class="line">isEyeOpen = <span class="keyword">false</span>;</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line"><span class="keyword">this</span>.setTransformationMethod(HideReturnsTransformationMethod.getInstance());</div><div class="line">isEyeOpen = <span class="keyword">true</span>;</div><div class="line">&#125;</div><div class="line">switchEyeIcon();</div><div class="line">&#125;</div><div class="line"><span class="comment">//TODO 监听自定义其他的回调咯</span></div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(event);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>这就特别简单了，就不多交代什么了。</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
@@ -422,494 +432,38 @@
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/Hexo建站学习/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Amberkira Yunnel">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Amberkira">
-    </span>
-
-    
-      <header class="post-header">
-
         
-        
-          <h1 class="post-title" itemprop="name headline">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/03/08/Hexo建站学习/" rel="next" title="“Hexo建站学习”">
+                <i class="fa fa-chevron-left"></i> “Hexo建站学习”
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2017/03/08/Hexo建站学习/" itemprop="url">
-                  “Hexo建站学习”
-                </a>
-              
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T17:08:13+08:00">
-                2017-03-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h2 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h2><ul>
-<li>node.js  </li>
-<li>git  </li>
-<li>github</li>
-</ul>
-<h2 id="着手准备"><a href="#着手准备" class="headerlink" title="着手准备"></a>着手准备</h2><p>  1.首先<a href="https://nodejs.org/en/" target="_blank" rel="external">node.js</a>下载获取必备工具<strong>npm</strong>(不建议使用cnpm，阿里镜像下的hexo包可能不全)。  </p>
-<p>  2.获取git:Xcode自带git，这部分只需要配置好即可。  </p>
-<p>  3.创建<a href="https://github.com" target="_blank" rel="external">github</a>账号，新建repo，名字格式必须为:<strong>账号+”.github.io”</strong>。</p>
-<h2 id="使用npm"><a href="#使用npm" class="headerlink" title="使用npm"></a>使用npm</h2><p><em>使用npm中遇到的问题是最多的，我们最后是依照<a href="https://hexo.io" target="_blank" rel="external">Hexo官网</a>的说明完成了其中一部分命令行的键入.</em>  </p>
-<p><code>$ sudo npm install hexo-cli -g</code>  </p>
-<p>请注意命令中的<strong>sudo</strong>是必备的，mac上会要求键入用户软件安装密码，参照官网的话npm会返回dwrat错误信息。</p>
-<p><code>$ hexo init &lt;folder&gt;</code>  </p>
-<p>这一步最早也是报错，是因为这个init命令 在没有folder指定情况下是直接在～目录下创建，mac里这部分指代的路径一般都是用户根目录，hexo不能在非空文件夹下引入配置。所以new folder就能解决问题。  </p>
-<p><code>$ cd &lt;folder&gt;</code>  </p>
-<p>  现在让我们进入上一步进行初始化的folder内，当然这也是以后需要与github仓库绑定的文件夹。下一步你就会明白了 。  </p>
-<p><code>$ npm install</code> </p>
-<p>  该命令的顺利执行会帮助你引入六个文件 通过ls命令我们可以查到是否完整引入。他们的作用会在待会儿正确配置好小站后慢慢给大家道来。  </p>
-<p>  <code>$ vim _config.yml</code> </p>
-<p>  接下来就让我们来配置_config文件，这步是为了将你的blog与github库相关联。需要对_config.yml进行一部分修改，通过vim打开文件后，按i进入插入模式，滑动到最下方deploy部分，最初代码应该是需要更改为这一步需要注意的是请不要少或多一个空格，否则下一步命令的时候会报bad indentationd错误。  </p>
-<p><code>$ npm install hexo-deployer-git --save</code>  </p>
-<p>  这一步是帮助hexo通过git来部署我们的项目。  </p>
-<p><code>$ hexo new &quot;title&quot;</code></p>
-<p><code>$ hexo g</code></p>
-<p> <code>$ hexo d</code>  </p>
-<p>  终于可以使用Hexo最出名的三步走动作了，这一系列动作完成从创建新文章md文件到生成静态网页到最后push到github托管等一系列操作。  </p>
-<p><code>$ hexo server</code>  </p>
-<p>  当然如果不打算着急发布的同学们不需要执行最后一步d命令，而是通过server命令能够在localhost：4000端口提前预览网页内容，进行调整之后发布。</p>
-<h2 id="Hexo文件讲解"><a href="#Hexo文件讲解" class="headerlink" title="Hexo文件讲解"></a>Hexo文件讲解</h2><p>在hexo为我们提供了很方便搭建框架的同时，如果我们需要进行更多自定义的动作时候，我们也不妨花点时间来对其进行深入点的了解。以下的内容基本都是基于hexo官方说明的翻译，如果有不到位的地方还请大神斧正。</p>
-<p>  回顾之前我们在blog相关的folder中执行完<strong>$ npm install</strong>后，获取到的几个文件如下:</p>
-<ul>
-<li>_config.yml</li>
-<li>package.json</li>
-<li>scaffolds</li>
-<li>source</li>
-<li>themes  </li>
-</ul>
-<h3 id="config-yml"><a href="#config-yml" class="headerlink" title="_config.yml"></a>_config.yml</h3><p>  用于配制自己站点绝大部分设置的文件。</p>
-<p> SITE</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">设置</th>
-<th style="text-align:left">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">title</td>
-<td style="text-align:left">网站的标题</td>
-</tr>
-<tr>
-<td style="text-align:left">subtitle</td>
-<td style="text-align:left">网站的副标题</td>
-</tr>
-<tr>
-<td style="text-align:left">description</td>
-<td style="text-align:left">网站的描述</td>
-</tr>
-<tr>
-<td style="text-align:left">author</td>
-<td style="text-align:left">你的名字（误）</td>
-</tr>
-<tr>
-<td style="text-align:left">language</td>
-<td style="text-align:left">网站语言，请使用符合ISO-639-1的两字母代码，默认是en,你也可以<a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" target="_blank" rel="external">点此</a>获取更多国家的代码</td>
-</tr>
-<tr>
-<td style="text-align:left">timezone</td>
-<td style="text-align:left">网站时区，默认是获取您计算机的当前时区，你可以<a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" target="_blank" rel="external">点此</a>获取更多的时区表  </td>
-</tr>
-</tbody>
-</table>
-<p> URL</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">设置</th>
-<th style="text-align:left">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">url</td>
-<td style="text-align:left">设置网站的url地址</td>
-</tr>
-<tr>
-<td style="text-align:left">root</td>
-<td style="text-align:left">设置网站文档的根目录</td>
-</tr>
-<tr>
-<td style="text-align:left">permalink</td>
-<td style="text-align:left">设置文章的静态链接格式<a href="https://hexo.io/docs/permalinks.html" target="_blank" rel="external">参考</a></td>
-</tr>
-<tr>
-<td style="text-align:left">permalink_defaults</td>
-<td style="text-align:left">设置静态链接中每个字段的默认值</td>
-</tr>
-</tbody>
-</table>
-<p>  还有其他很多设置的<a href="https://hexo.io/docs/configuration.html" target="_blank" rel="external">选项</a></p>
-<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><p>  应用数据，EJS,Stylus,Markdown 的渲染引擎是默认安装的。</p>
-<h3 id="scaffolds"><a href="#scaffolds" class="headerlink" title="scaffolds"></a>scaffolds</h3><p>  脚手架，Hexo是基于脚手架内的新文件来帮你创建新post的。</p>
-<h3 id="source"><a href="#source" class="headerlink" title="source"></a>source</h3><p>  该文件夹用于放置你站点内容的，hexo会忽略到该文件夹下的隐藏文件或除了<em>post以外的所有名称前缀是“</em>”的文件。用于渲染的文件（如Markdown,html）是会被执行并且放置在public文件夹内，而其他文件只会被复制而已。</p>
-<h3 id="themes"><a href="#themes" class="headerlink" title="themes"></a>themes</h3><p>theme文件夹。Hexo会将站点内容与themes文件相结合来生成静态网页。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Amberkira Yunnel">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Amberkira">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/08/test/" itemprop="url">
-                  test
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T15:14:29+08:00">
-                2017-03-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Amberkira Yunnel">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Amberkira">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/08/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T14:33:17+08:00">
-                2017-03-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -917,6 +471,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -936,8 +494,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -981,6 +548,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义控件学习"><span class="nav-number">1.</span> <span class="nav-text">自定义控件学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#初期准备"><span class="nav-number">1.1.</span> <span class="nav-text">初期准备</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1086,6 +669,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
