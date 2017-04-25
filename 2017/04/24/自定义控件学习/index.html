@@ -97,7 +97,7 @@
 我们的自定义控件在最开始可以简单的继承某个类型的控件开始，这里我选择的是EditText。自定义的话一定就设计到自定义的a">
 <meta property="og:image" content="http://omizc9kwk.bkt.clouddn.com/86F100A7-4A40-4EFF-86A0-93AD1399383C.png">
 <meta property="og:image" content="http://omizc9kwk.bkt.clouddn.com/7E87D2E0-8FB7-4127-AAF9-2D324F96DF2D.png">
-<meta property="og:updated_time" content="2017-04-24T02:32:15.000Z">
+<meta property="og:updated_time" content="2017-04-24T02:38:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自定义控件学习">
 <meta name="twitter:description" content="自定义控件学习初期准备我们在xml中定义的如button／textview等控件在android中一般是存在于android.R.attr.xxxxStyle中的，包含了默认的attr如width，height等，也包含着一些需要用户自定义的类型如text，align等内容。
@@ -385,12 +385,11 @@
 <p><img src="http://omizc9kwk.bkt.clouddn.com/7E87D2E0-8FB7-4127-AAF9-2D324F96DF2D.png" alt="TextView"></p>
 <p>最后偷来的计算Text内部字符各种长度用到的方法</p>
 <blockquote>
-<p>####获取整段文字的长度</p>
-<blockquote>
+<h4 id="获取整段文字的长度"><a href="#获取整段文字的长度" class="headerlink" title="获取整段文字的长度"></a>获取整段文字的长度</h4><blockquote>
 <ul>
-<li>TextView.getPaint().measureText(String text)<br>####获取任意行的长度</li>
+<li>TextView.getPaint().measureText(String text)<h4 id="获取任意行的长度"><a href="#获取任意行的长度" class="headerlink" title="获取任意行的长度"></a>获取任意行的长度</h4></li>
 <li>TextView.getLayout().getLineCount()</li>
-<li>TextView.getLayout().getLineWidth(int line)<br>####跑马灯配置4必要条件</li>
+<li>TextView.getLayout().getLineWidth(int line)<h4 id="跑马灯配置4必要条件"><a href="#跑马灯配置4必要条件" class="headerlink" title="跑马灯配置4必要条件"></a>跑马灯配置4必要条件</h4></li>
 <li>android:ellipsize=”marquee”</li>
 <li>android:singleLine=”true”</li>
 <li>android:focusable=”true”</li>
@@ -445,6 +444,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/25/“summary”/" rel="prev" title="“summary”">
+                “summary” <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -516,7 +519,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -555,7 +558,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义控件学习"><span class="nav-number">1.</span> <span class="nav-text">自定义控件学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#初期准备"><span class="nav-number">1.1.</span> <span class="nav-text">初期准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建自定义EditText"><span class="nav-number">1.2.</span> <span class="nav-text">新建自定义EditText</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数"><span class="nav-number">1.2.1.</span> <span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">1.2.2.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片大小设置"><span class="nav-number">1.2.3.</span> <span class="nav-text">图片大小设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#点击事件范围获取"><span class="nav-number">1.2.4.</span> <span class="nav-text">点击事件范围获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#点击事件"><span class="nav-number">1.2.5.</span> <span class="nav-text">点击事件</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义控件学习"><span class="nav-number">1.</span> <span class="nav-text">自定义控件学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#初期准备"><span class="nav-number">1.1.</span> <span class="nav-text">初期准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建自定义EditText"><span class="nav-number">1.2.</span> <span class="nav-text">新建自定义EditText</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数"><span class="nav-number">1.2.1.</span> <span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">1.2.2.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片大小设置"><span class="nav-number">1.2.3.</span> <span class="nav-text">图片大小设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#点击事件范围获取"><span class="nav-number">1.2.4.</span> <span class="nav-text">点击事件范围获取</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取整段文字的长度"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">获取整段文字的长度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取任意行的长度"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">获取任意行的长度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#跑马灯配置4必要条件"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">跑马灯配置4必要条件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#点击事件"><span class="nav-number">1.2.5.</span> <span class="nav-text">点击事件</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
