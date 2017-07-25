@@ -1,0 +1,906 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="从很多人写的博客都看到了大家对这个layout的使用以及部分不太全的讲解，所以还是从官网上学习这个布局应该是最快的 
+CoordinatorLayout定义
+CoordinatorLayout is a super-powered FrameLayout.
+CoordinatorLayout is intended for two primary use cases:
+As a top-leve">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Amberkira">
+<meta property="og:url" content="http://yoursite.com/2017/04/25/coordinator&behavior/index.html">
+<meta property="og:site_name" content="Amberkira">
+<meta property="og:description" content="从很多人写的博客都看到了大家对这个layout的使用以及部分不太全的讲解，所以还是从官网上学习这个布局应该是最快的 
+CoordinatorLayout定义
+CoordinatorLayout is a super-powered FrameLayout.
+CoordinatorLayout is intended for two primary use cases:
+As a top-leve">
+<meta property="og:image" content="http://omizc9kwk.bkt.clouddn.com/appbar_structure.png">
+<meta property="og:updated_time" content="2017-07-24T07:28:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Amberkira">
+<meta name="twitter:description" content="从很多人写的博客都看到了大家对这个layout的使用以及部分不太全的讲解，所以还是从官网上学习这个布局应该是最快的 
+CoordinatorLayout定义
+CoordinatorLayout is a super-powered FrameLayout.
+CoordinatorLayout is intended for two primary use cases:
+As a top-leve">
+<meta name="twitter:image" content="http://omizc9kwk.bkt.clouddn.com/appbar_structure.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/25/coordinator&behavior/"/>
+
+
+
+
+
+  <title>  | Amberkira </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Amberkira</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/25/coordinator&behavior/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amberkira Yunnel">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Amberkira">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-25T12:43:28+08:00">
+                2017-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p> 从很多人写的博客都看到了大家对这个layout的使用以及部分不太全的讲解，所以还是从官网上学习这个布局应该是最快的 </p>
+<h2 id="CoordinatorLayout定义"><a href="#CoordinatorLayout定义" class="headerlink" title="CoordinatorLayout定义"></a>CoordinatorLayout定义</h2><blockquote>
+<p>CoordinatorLayout is a super-powered FrameLayout.</p>
+<p>CoordinatorLayout is intended for two primary use cases:</p>
+<p>As a top-level application decor or chrome layout.</p>
+<p>As a container for a specific interaction with one or more child views.</p>
+<p>By specifying Behaviors for child views of a CoordinatorLayout you can provide many different interactions within a single parent and those views can also interact with one another. View classes can specify a default behavior when used as a child of a CoordinatorLayout using the DefaultBehavior annotation.</p>
+<p>Behaviors may be used to implement a variety of interactions and additional layout modifications ranging from sliding drawers and panels to swipe-dismissable elements and buttons that stick to other elements as they move and animate.</p>
+<p>Children of a CoordinatorLayout may have an anchor. This view id must correspond to an arbitrary descendant of the CoordinatorLayout, but it may not be the anchored child itself or a descendant of the anchored child. This can be used to place floating views relative to other arbitrary content panes.</p>
+<p>Children can specify insetEdge to describe how the view insets the CoordinatorLayout. Any child views which are set to dodge the same inset edges by dodgeInsetEdges will be moved appropriately so that the views do not overlap.</p>
+</blockquote>
+<p>作为最基础的layout，他的定义很长哈，我们慢慢解释一下，首先我们知道他是一个“屌屌”的FrameLayout,然后呢，他被设计出来主要是为了以下两个使用场景:</p>
+<p>1.作为顶层的应用decor或chrome layout。 </p>
+<p>2.作为1个或几个具有具体内部交互的子view的容器。</p>
+<p>coordinatorlayout通过为其子代具体实例化behavior，为单独的父代能提供多种不同的内部交互，子view之间也能进行相互互动，子view能通过使用默认behavior注解，能使用默认behavior。behavior覆盖范围从侧拉栏到滑动取消元素，按钮都能应用上多种的内部交互以及布局变化效果。coordinatorlayout的子view是通过anchor来实现具体定位，但是anchor的view id不能是该view自身或已经anchor的child的子代。</p>
+<p>子view都可以制定嵌入边界，它描述了子view如何嵌入coordinatorlayout。子view也能通过dodgeInsetEdges属性来设置如何回避具有相同嵌入边界的同代，防止view之间的相互覆盖。</p>
+<p>在coordinatorlayout内部api中有一套需要理解且会用的机制：NestedScroll 嵌套滚动机制；<br>这套机制通过内部：<strong>onNestedPreScroll / onStartNestedScroll / onNestedScroll / onStopNestedScroll / onNestedFling(ADDITIONAL)</strong></p>
+<ul>
+<li>onNestedPreScroll:</li>
+</ul>
+<blockquote>
+<p>void onNestedPreScroll (View target,<br>                int dx,<br>                int dy,<br>                int[] consumed)</p>
+<p>React to a nested scroll in progress before the target view consumes a portion of the scroll.</p>
+<p>When working with nested scrolling often the parent view may want an opportunity to consume the scroll before the nested scrolling child does. An example of this is a drawer that contains a scrollable list. The user will want to be able to scroll the list fully into view before the list itself begins scrolling.</p>
+<p>onNestedPreScroll is called when a nested scrolling child invokes dispatchNestedPreScroll(int, int, int[], int[]). The implementation should report how any pixels of the scroll reported by dx, dy were consumed in the consumed array. Index 0 corresponds to dx and index 1 corresponds to dy. This parameter will never be null. Initial values for consumed[0] and consumed[1] will always be 0.</p>
+</blockquote>
+<p>根据params 该方法会在target消费scroll距离之前会调用该方法。在使用嵌入滚动的时候，父代往往是想在子代之前将scroll距离消费掉，比如drawer，在drawer完全展示之后才开始实现list的滚动<br>当嵌套滚动子代唤起dispatchNestedPreScroll的时候，该方法会被调用。具体实现中告知从dx，dy反馈回来的滚动距离是如何被消费的。消费数据中0指代的是dx，1指代的是dy，该参数永不为0.</p>
+<table>
+<thead>
+<tr>
+<th>Params</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>target</td>
+<td>View: View that initiated the nested scroll</td>
+</tr>
+<tr>
+<td>dx</td>
+<td>int: Horizontal scroll distance in pixels</td>
+</tr>
+<tr>
+<td>dy</td>
+<td>int: Vertical scroll distance in pixels</td>
+</tr>
+<tr>
+<td>consumed</td>
+<td>int: Output. The horizontal and vertical scroll distance consumed by this parent</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>onStartNestedScroll</li>
+</ul>
+<blockquote>
+<p>boolean onStartNestedScroll (View child,<br>                View target,<br>                int axes,<br>                int type)</p>
+<p>React to a descendant view initiating a nestable scroll operation, claiming the nested scroll operation if appropriate.<br>This method will be called in response to a descendant view invoking startNestedScroll(View, int). Each parent up the view hierarchy will be given an opportunity to respond and claim the nested scrolling operation by returning true.<br>This method may be overridden by ViewParent implementations to indicate when the view is willing to support a nested scrolling operation that is about to begin. If it returns true, this ViewParent will become the target view’s nested scrolling parent for the duration of the scroll operation in progress. When the nested scroll is finished this ViewParent will receive a call to onStopNestedScroll(View, int).</p>
+</blockquote>
+<p>子代调用startNestedScroll时候，其上每个父代都能通过该方法返回true来对这个嵌套滚动进行反馈。个方法可能会被view父代的实现类重写用来指导view什么时候去支持一个正要发生的嵌套滚动事件。如果返回true的话，这个view父代就会在嵌套滚动过程中成为目标view的嵌套滚动父代，之后滚动结束时<br>这个view会调用onStopNestedScroll方法</p>
+<table>
+<thead>
+<tr>
+<th>Params</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>child</td>
+<td>View: Direct child of this ViewParent containing target</td>
+</tr>
+<tr>
+<td>target</td>
+<td>View: View that initiated the nested scroll</td>
+</tr>
+<tr>
+<td>axes</td>
+<td>int: Flags consisting of SCROLL_AXIS_HORIZONTAL, SCROLL_AXIS_VERTICAL or both</td>
+</tr>
+<tr>
+<td>type</td>
+<td>int: the type of input which cause this scroll event</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>onNestedScroll<blockquote>
+<p>void onNestedScroll (View target, </p>
+<pre><code>int dxConsumed, 
+int dyConsumed, 
+int dxUnconsumed, 
+int dyUnconsumed)
+</code></pre><p>React to a nested scroll in progress.</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>This method will be called when the ViewParent’s current nested scrolling child view dispatches a nested scroll event. To receive calls to this method the ViewParent must have previously returned true for a call to onStartNestedScroll(View, View, int).</p>
+<p>Both the consumed and unconsumed portions of the scroll distance are reported to the ViewParent. An implementation may choose to use the consumed portion to match or chase scroll position of multiple child elements, for example. The unconsumed portion may be used to allow continuous dragging of multiple scrolling or draggable elements, such as scrolling a list within a vertical drawer where the drawer begins dragging once the edge of inner scrolling content is reached.</p>
+</blockquote>
+<p>对嵌套滚动过程作出反应。该方法会在父代当前的嵌套滚动子代分发滚动事件的时候被调用，当然父代必须在之前onStartNestedScroll方法中返回true才能收到调用哟～<br>下面这段就跟我们说你能怎么去用这些个距离了，当然这也是大家都想关注的重点。</p>
+<table>
+<thead>
+<tr>
+<th>Params</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>target</td>
+<td>View: The descendent view controlling the nested scroll</td>
+</tr>
+<tr>
+<td>dxConsumed</td>
+<td>int: Horizontal scroll distance in pixels already consumed by target</td>
+</tr>
+<tr>
+<td>dyConsumed</td>
+<td>int: Vertical scroll distance in pixels already consumed by target</td>
+</tr>
+<tr>
+<td>dxUnconsumed</td>
+<td>int: Horizontal scroll distance in pixels not consumed by target</td>
+</tr>
+<tr>
+<td>dyUnconsumed</td>
+<td>int: Vertical scroll distance in pixels not consumed by target</td>
+</tr>
+<tr>
+<td>type</td>
+<td>int: the type of input which cause this scroll event</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>onStopNestedScroll</li>
+</ul>
+<blockquote>
+<p>void onStopNestedScroll (View target,<br>                int type)<br>React to a nested scroll operation ending.</p>
+<p>Perform cleanup after a nested scrolling operation. This method will be called when a nested scroll stops, for example when a nested touch scroll ends with a ACTION_UP or ACTION_CANCEL event. Implementations of this method should always call their superclass’s implementation of this method if one is present.</p>
+</blockquote>
+<p>对应的肯定就是嵌套滚动事件的结束，扮演的是事件结束的收尾者咯，重写这方法你得记得super(target，type)一下，方便收拾。</p>
+<ul>
+<li>onNestedFling</li>
+</ul>
+<h2 id="AppBarLayout定义"><a href="#AppBarLayout定义" class="headerlink" title="AppBarLayout定义"></a>AppBarLayout定义</h2><blockquote>
+<p>AppBarLayout is a vertical LinearLayout which implements many of the features of material designs app bar concept, namely scrolling gestures.</p>
+<p>Children should provide their desired scrolling behavior through setScrollFlags(int) and the associated layout xml attribute: app:layout_scrollFlags.</p>
+<p>This view depends heavily on being used as a direct child within a CoordinatorLayout. If you use AppBarLayout within a different ViewGroup, most of it’s functionality will not work.</p>
+<p>AppBarLayout also requires a separate scrolling sibling in order to know when to scroll. The binding is done through the AppBarLayout.ScrollingViewBehavior behavior class, meaning that you should set your scrolling view’s behavior to be an instance of AppBarLayout.ScrollingViewBehavior. A string resource containing the full class name is available. </p>
+</blockquote>
+<ul>
+<li>google的解释：说这个布局呢，他首先是一个垂直的线性布局，其次他实现了md内appbar的很多特性，主要指得是滚动手势。</li>
+<li>那么他是怎么样来实现的呢？他的children可以通过xml中app:layout_scrollFlags或者代码中调用 setScrollFlags(int)方法来实现。</li>
+<li>那么他需要遵守什么规定呢？最最最基础的就是：他得是CoordinatorLayout的<strong>直接子代</strong>，要不是的话？那么抱歉，绝大部分功能都用不了。其次呢？他还必须有一个独立的可以滚动的兄弟view来告诉他什么时候去scroll.他们之间通过的是AppBarLayout.ScrollingViewBehavior类来实现的绑定，所以你得老老实实的给你这个会scroll的兄弟view设置一个这样的behavior.</li>
+</ul>
+<p><img src="http://omizc9kwk.bkt.clouddn.com/appbar_structure.png" alt="APPBAR_Structure"><br>google定义的appbar结构</p>
+<h2 id="AppBarLayout实操"><a href="#AppBarLayout实操" class="headerlink" title="AppBarLayout实操"></a>AppBarLayout实操</h2><p><strong>ScrollFlags一共包含五种，他们分别是:scroll | snap | enterAlways | exitUntilCollapsed | enterAlwaysCollapsed</strong>.<br>这五种flag的效果各自不同，可以混搭，下面我们分别说下效果;</p>
+<h3 id="scroll-对应代码中的int-SCROLL-FLAG-SCROLL"><a href="#scroll-对应代码中的int-SCROLL-FLAG-SCROLL" class="headerlink" title="scroll : 对应代码中的int = SCROLL_FLAG_SCROLL"></a><strong>scroll</strong> : 对应代码中的int = SCROLL_FLAG_SCROLL</h3><blockquote>
+<p>The view will be scroll in direct relation to scroll events. This flag needs to be set for any of the other flags to take effect. If any sibling views before this one do not have this flag, then this value has no effect.</p>
+</blockquote>
+<ul>
+<li>该flag定义下的view将会直接跟sroll event关联，而这个flag就是scroll里最基本flag了，其他4种flag都需要配合着他才能生效如 “scroll|snap” 这样snap才会生效，单独使用snap是无效的。</li>
+</ul>
+<h3 id="snap-：对应代码中int-SCROLL-FLAG-SNAP"><a href="#snap-：对应代码中int-SCROLL-FLAG-SNAP" class="headerlink" title="snap ：对应代码中int = SCROLL_FLAG_SNAP"></a><strong>snap</strong> ：对应代码中int = SCROLL_FLAG_SNAP</h3><blockquote>
+<p>Upon a scroll ending, if the view is only partially visible then it will be snapped and scrolled to it’s closest edge. For example, if the view only has it’s bottom 25%<br>         displayed, it will be scrolled off screen completely. Conversely, if it’s bottom 75%<br>   is visible then it will be scrolled fully into view.</p>
+</blockquote>
+<ul>
+<li>flag如名，snap的意思就是啪一声，他代表的模式是“在滚动即将结束的时候，要是该view是部分可见的情况下，他会直接滚进理他最近的边界” 举例子就是：要是他现在离底部只剩25%了，那么该view就会跟随那75%已经被盖住的view一起消失，反之要是只进去25%，那么不好意思了，本view会恢复原状，100%的出现在你面前！</li>
+</ul>
+<h3 id="enterAlways-对应代码中的int-SCROLL-FLAG-ENTER-ALWAYS"><a href="#enterAlways-对应代码中的int-SCROLL-FLAG-ENTER-ALWAYS" class="headerlink" title="enterAlways : 对应代码中的int = SCROLL_FLAG_ENTER_ALWAYS"></a><strong>enterAlways</strong> : 对应代码中的int = SCROLL_FLAG_ENTER_ALWAYS</h3><blockquote>
+<p> When entering (scrolling on screen) the view will scroll on any downwards<br>         scroll event, regardless of whether the scrolling view is also scrolling. This<br>         is commonly referred to as the ‘quick return’ pattern.</p>
+</blockquote>
+<ul>
+<li>当屏幕开始滚动的时候，该view会响应所有向下滚动事件，根本不会考虑关联的srcoll view是否也正在滑动，这个模式在快速返回功能中经常被用到。</li>
+</ul>
+<h3 id="enterAlwaysCollapsed-对应代码中的int-SCROLL-FLAG-ENTER-ALWAYS-COLLAPSED"><a href="#enterAlwaysCollapsed-对应代码中的int-SCROLL-FLAG-ENTER-ALWAYS-COLLAPSED" class="headerlink" title="enterAlwaysCollapsed : 对应代码中的int = SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED"></a><strong>enterAlwaysCollapsed</strong> : 对应代码中的int = SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED</h3><blockquote>
+<p>An additional flag for ‘enterAlways’ which modifies the returning view to<br>         only initially scroll back to it’s collapsed height. Once the scrolling view has<br>         reached the end of it’s scroll range, the remainder of this view will be scrolled<br>         into view. The collapsed height is defined by the view’s minimum height.</p>
+</blockquote>
+<ul>
+<li>这是一个enterAlways的补充flag，他也是响应的下滚动作，但是他最开始只会将返回view设定的折叠高度大小部分，只有当scrollview在到达滚动他滚动边界的时候，才会返回view的全部界面。而view的折叠高度是通过view的最小高度来定义的。</li>
+</ul>
+<h3 id="exitUntilCollapsed-对应代码中的int-SCROLL-FLAG-EXIT-UNTIL-COLLAPSED"><a href="#exitUntilCollapsed-对应代码中的int-SCROLL-FLAG-EXIT-UNTIL-COLLAPSED" class="headerlink" title="exitUntilCollapsed : 对应代码中的int = SCROLL_FLAG_EXIT_UNTIL_COLLAPSED"></a><strong>exitUntilCollapsed</strong> : 对应代码中的int = SCROLL_FLAG_EXIT_UNTIL_COLLAPSED</h3><blockquote>
+<p>When exiting (scrolling off screen) the view will be scrolled until it is<br>          ‘collapsed’. The collapsed height is defined by the view’s minimum height.</p>
+</blockquote>
+<ul>
+<li>滚离界面的情况下，view在直到完全折叠前都会跟着滚动，这个完全折叠的高度也是通过view的最小高度来定义。</li>
+</ul>
+<p>除了flag，我们经常还会用到的常用属性有contentScrim/statusBarScrim/layout_collapseMode<br>第一个是标题栏的底色，第二个是状态栏的颜色，第三个是折叠的模式：有parallax视差 pin固定 none无</p>
+<h3 id="AppBarLayout中有一个addOnOffsetChangedListener"><a href="#AppBarLayout中有一个addOnOffsetChangedListener" class="headerlink" title="AppBarLayout中有一个addOnOffsetChangedListener()"></a>AppBarLayout中有一个addOnOffsetChangedListener()</h3><p>该方法能很好的对appbarlayout中所有子view进行控制，下面会贴代码示例一下</p>
+<pre><code>cur = AppBarLayoutState.Expanded;
+appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
+appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+    @Override
+    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+
+        Log.e(&quot;&quot;,&quot;range:&quot;+appBarLayout.getScrollY()
+        );
+        if(verticalOffset==0){
+            cur = AppBarLayoutState.Expanded;
+            //这里可对collapseToolbar等部件内部现实做操作
+        }else if(Math.abs(verticalOffset)&gt;=appBarLayout.getTotalScrollRange()&amp;&amp;cur!=AppBarLayoutState.Collapsed){
+            cur = AppBarLayoutState.Collapsed;
+            //这里可对collapseToolbar等部件内部现实做操作
+        }
+    }
+});
+</code></pre><p> 通过上面的代码我们不仅能掌握appbar状态也能动态进行view的显示操作从而完成一些跟appbar状态变化有关的视图操作。但是如果涉及到位置变换等其他更加复杂的方面，我们就需要引入自定义behavior了。再讲behavior之前我们还要说一下其他几个能配合appbarlayout使用的哥们儿：CollapsingToolbarLayout/ButtonBarLayout/Tablayout/fab/TextInputLayout</p>
+<h2 id="CollapsingToolbarLayout定义"><a href="#CollapsingToolbarLayout定义" class="headerlink" title="CollapsingToolbarLayout定义"></a>CollapsingToolbarLayout定义</h2><blockquote>
+<p>CollapsingToolbarLayout is a wrapper for Toolbar which implements a collapsing app bar. It is designed to be used as a direct child of a AppBarLayout.</p>
+</blockquote>
+<p>google对他的介绍很简单：他是Toolbar的包装类，实现了折叠appbar，他是被设计用做AppBarLayout的<strong>直接子代</strong>。<br>google给我们介绍了一些他的特点：</p>
+<h3 id="Collapsing-title"><a href="#Collapsing-title" class="headerlink" title="Collapsing title"></a>Collapsing title</h3><blockquote>
+<p>A title which is larger when the layout is fully visible but collapses and becomes smaller as the layout is scrolled off screen. You can set the title to display via setTitle(CharSequence). The title appearance can be tweaked via the collapsedTextAppearance and expandedTextAppearance attributes.</p>
+</blockquote>
+<p>该title在layout全可见的时候会比在折叠情况下大一些，你也能通过setTitle()来设置，title会根据collapsedTextAppearance和expandedTextAppearance属性进行相应的调整</p>
+<h3 id="Content-scrim"><a href="#Content-scrim" class="headerlink" title="Content scrim"></a>Content scrim</h3><blockquote>
+<p>A full-bleed scrim which is show or hidden when the scroll position has hit a certain threshold. You can change this via setContentScrim(Drawable).</p>
+</blockquote>
+<p>前面说过，pass</p>
+<h3 id="Status-bar-scrim"><a href="#Status-bar-scrim" class="headerlink" title="Status bar scrim"></a>Status bar scrim</h3><blockquote>
+<p>A scrim which is show or hidden behind the status bar when the scroll position has hit a certain threshold. You can change this via setStatusBarScrim(Drawable). This only works on LOLLIPOP devices when we set to fit system windows.</p>
+</blockquote>
+<p>前面说过，pass</p>
+<h3 id="Parallax-scrolling-children"><a href="#Parallax-scrolling-children" class="headerlink" title="Parallax scrolling children"></a>Parallax scrolling children</h3><blockquote>
+<p>Child views can opt to be scrolled within this layout in a parallax fashion. See COLLAPSE_MODE_PARALLAX and setParallaxMultiplier(float).</p>
+</blockquote>
+<p>前面说过，pass</p>
+<h3 id="Pinned-position-children"><a href="#Pinned-position-children" class="headerlink" title="Pinned position children"></a>Pinned position children</h3><blockquote>
+<p>Child views can opt to be pinned in space globally. This is useful when implementing a collapsing as it allows the Toolbar to be fixed in place even though this layout is moving. See COLLAPSE_MODE_PIN.<br>Do not manually add views to the Toolbar at run time. We will add a ‘dummy view’ to the Toolbar which allows us to work out the available space for the title. This can interfere with any views which you add.</p>
+</blockquote>
+<p>前面说过，pass</p>
+<p>其他的一些具体的xml类属性我们给出了google的<a href="https://developer.android.google.cn/reference/android/support/design/widget/CollapsingToolbarLayout.html" target="_blank" rel="external">相关地址</a></p>
+<p>其他的view大部分适配进anchor／anchorGravity/collpseMode等属性就能进行简单的变换了。深入的变化我们就进入到自定义behavior了</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/25/调研报告/" rel="next" title="调研报告">
+                <i class="fa fa-chevron-left"></i> 调研报告
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/12/design/" rel="prev" title="design">
+                design <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Amberkira Yunnel" />
+          <p class="site-author-name" itemprop="name">Amberkira Yunnel</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CoordinatorLayout定义"><span class="nav-number">1.</span> <span class="nav-text">CoordinatorLayout定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AppBarLayout定义"><span class="nav-number">2.</span> <span class="nav-text">AppBarLayout定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AppBarLayout实操"><span class="nav-number">3.</span> <span class="nav-text">AppBarLayout实操</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#scroll-对应代码中的int-SCROLL-FLAG-SCROLL"><span class="nav-number">3.1.</span> <span class="nav-text">scroll : 对应代码中的int = SCROLL_FLAG_SCROLL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#snap-：对应代码中int-SCROLL-FLAG-SNAP"><span class="nav-number">3.2.</span> <span class="nav-text">snap ：对应代码中int = SCROLL_FLAG_SNAP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#enterAlways-对应代码中的int-SCROLL-FLAG-ENTER-ALWAYS"><span class="nav-number">3.3.</span> <span class="nav-text">enterAlways : 对应代码中的int = SCROLL_FLAG_ENTER_ALWAYS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#enterAlwaysCollapsed-对应代码中的int-SCROLL-FLAG-ENTER-ALWAYS-COLLAPSED"><span class="nav-number">3.4.</span> <span class="nav-text">enterAlwaysCollapsed : 对应代码中的int = SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exitUntilCollapsed-对应代码中的int-SCROLL-FLAG-EXIT-UNTIL-COLLAPSED"><span class="nav-number">3.5.</span> <span class="nav-text">exitUntilCollapsed : 对应代码中的int = SCROLL_FLAG_EXIT_UNTIL_COLLAPSED</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AppBarLayout中有一个addOnOffsetChangedListener"><span class="nav-number">3.6.</span> <span class="nav-text">AppBarLayout中有一个addOnOffsetChangedListener()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CollapsingToolbarLayout定义"><span class="nav-number">4.</span> <span class="nav-text">CollapsingToolbarLayout定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Collapsing-title"><span class="nav-number">4.1.</span> <span class="nav-text">Collapsing title</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Content-scrim"><span class="nav-number">4.2.</span> <span class="nav-text">Content scrim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Status-bar-scrim"><span class="nav-number">4.3.</span> <span class="nav-text">Status bar scrim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parallax-scrolling-children"><span class="nav-number">4.4.</span> <span class="nav-text">Parallax scrolling children</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pinned-position-children"><span class="nav-number">4.5.</span> <span class="nav-text">Pinned position children</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Amberkira Yunnel</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
