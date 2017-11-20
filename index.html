@@ -247,6 +247,306 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/20/apt-memo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amberkira Yunnel">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Amberkira">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/20/apt-memo/" itemprop="url">
+                  apt_memo
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-20T11:16:24+08:00">
+                2017-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="apt填坑备忘Memo"><a href="#apt填坑备忘Memo" class="headerlink" title="apt填坑备忘Memo"></a>apt填坑备忘Memo</h1><p>文章开头第一段我打算的是交代下行文多背景目的以及最终达到的效果，所以没错这是一个总分总形式的article。最初就是想了解下annotation，哪知道最后扯出那么多路子，从开始看apt有关的内容到开始写demo大概花了2天时间，下面我会把学习路线先总结下，然后把我觉得重要的给备份一次，最后实践部分是通过一个简单的apt来实现登陆注册等表单的验证功能的demo。</p>
+<h2 id="学习路线"><a href="#学习路线" class="headerlink" title="学习路线"></a>学习路线</h2><p>annotation–自定义annotation–动态代理ProxyInstance–AbstractProcessor–ButterKnife–JavaPoet–ClassLoader</p>
+<p>注意这不是一个严格的时序图。我在里面可能来回跳了好几次。</p>
+<p>说到annotation，最基础的就是我们每次重写超类方法时候的@override等基础annotation了，基础的知识如：Retation，Target，inherated等就[]点这吧。<br>然后讲到自定义annotation的时候，我们都会想到最出名的Butterknife，当然各个blog也都像模像样的给大家用reflect，动态代理，RetationPolicy.Runtime这些最原始的条件下写了一些demo，当然早起的butterknife确实也是这样的，后期为了节约开销，便将RetationPolicy更至于Class了，通过在第一次将代码编译至class文件时写入相关代码，不再运行时编译，节约了大量系统开销，当然节省时间，你要真想不起来了可以[]点这</p>
+<p>之后abstractProcessor，javapoet，classloader都是围绕着butterknife的工作原理展开的。首先abstractprocessor是google为了在class阶段翻译代码所提供的一个处理类；javapoet是jw大神自己写的一个能动态生成java文件的库，classloader是将我们通过注解生成的类于我们目标类关联起来的桥梁！生成的新的类如何加载？那当然是classloader啦！</p>
+<p>通过整理butterknife代码我们很清楚实现的顺序就是首先通过继承了ap的processor类的process方法扫描获取目标类中所有跟我们自定义annotation有关的类，方法，成员变量等，然后通过javapoet为他们生成一个java类封装相应的实现，最后在运行时目标类会通过我们提供的方法用classloader加载我们生成的新类！之后我们结合bk源码以及demo的反编译后的拿到的class文件来说明。</p>
+<h2 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h2><p>整个实现逻辑在理解上来说是很顺畅简单的，但是我自己觉得最难的其实就是abstractprocessor中的各个type类。这方面讲解的文章很少，大部分都是还原bk源码部分就完事儿了。</p>
+<h3 id="AbstractProcessor"><a href="#AbstractProcessor" class="headerlink" title="AbstractProcessor"></a>AbstractProcessor</h3><p>首先我们从该类的方法入手看看</p>
+<p>private Elements elementUtils;<br>private Types typeUtils;<br>private Messager message;<br>private Filer filer;//这几个是下面要实例化的几个帮助类</p>
+<p>@Override<br>public synchronized void init(ProcessingEnvironment processingEnv)     {<br>super.init(processingEnv);</p>
+<p>//ProcessingEnvironment 为我们提供了几个有用的帮助类，一般都可以在<br>//init方法中对这几个帮助类进行初始化；</p>
+<p>elementUtils = processingEnvironment.getElementUtils();<br>typeUtils = processingEnvironment.getTypeUtils();<br>filer = processingEnvironment.getFiler();<br>}</p>
+<p>//获取支持的annotation类<br>@Override<br>public Set<string> getSupportedAnnotationTypes() {<br>return null;<br>}</string></p>
+<p>//制定java版本<br>@Override<br>public SourceVersion getSupportedSourceVersion() {<br>return SourceVersion.latestSupported();<br>}</p>
+<p>／／在这里扫描和处理你的注解并生成Java代码，信息都在参数RoundEnvironment里    @Override<br>public boolean process(Set&lt;? extends TypeElement&gt; annotations, RoundEnvironment roundEnv) {<br>return true;<br>}</p>
+<h3 id="了解你获得的元素"><a href="#了解你获得的元素" class="headerlink" title="了解你获得的元素"></a>了解你获得的元素</h3><p>刚刚我们提到process方法中的RoundEnvironment会为我们提供扫描之后信息，那么怎么获取怎么使用我们先不着急，现在需要知其所以然了。</p>
+<p>你可能已经知道了通过roundEnv.getElementsAnnotatedWith(&lt;? extends Annotation.class&gt;) 可以获得具有该注解类的Set&lt;? extends Element&gt;；那么这个element就是我们重点关注的对象了。</p>
+<h4 id="Element"><a href="#Element" class="headerlink" title="Element"></a>Element</h4><p>在整个apt中，所有通过注解获取到的元素都将用这个方式等待我们的处理，既然是注解获得的，所以他的大部分子类跟当初注解时候的元注解Target其实是对应的；</p>
+<p>下面是<br>Element的官方注释：</p>
+<p>Represents a program element such as a package, class, or method.<br>Each element represents a static, language-level construct (and not, for example, a runtime construct of the virtual machine).<br>代表一个包，类或者方法等；</p>
+<p>Element的子类有：</p>
+<p>ExecutableElement</p>
+<p>表示某个类或接口的方法、构造方法或初始化程序（静态或实例），包括注释类型元素。</p>
+<p>对应@Target(ElementType.METHOD) @Target(ElementType.CONSTRUCTOR)</p>
+<p>PackageElement;</p>
+<p>表示一个包程序元素。提供对有关包及其成员的信息访问。</p>
+<p>对应@Target(ElementType.PACKAGE)</p>
+<p>TypeElement;</p>
+<p>表示一个类或接口程序元素。提供对有关类型及其成员的信息访问。</p>
+<p>对应@Target(ElementType.TYPE)</p>
+<p>注意：枚举类型是一种类，而注解类型是一种接口。</p>
+<p>TypeParameterElement;</p>
+<p>表示一般类、接口、方法或构造方法元素的类型参数。</p>
+<p>对应@Target(ElementType.PARAMETER)</p>
+<p>VariableElement;</p>
+<p>表示一个字段、enum常量、方法或构造方法参数、局部变量或异常参数。</p>
+<p>对应@Target(ElementType.LOCAL_VARIABLE)</p>
+<p>记清楚了这个对应关系，我们之后就能根据自定义注解来有的放矢的cast element了！<br>但是这一步我们通过看bk的源码发现还是头大！怎么办？慢慢梳理！首先我们从我们最需要的type以及method入手！推荐这个：<a href="http://blog.csdn.net/u010405231/article/details/52210401" target="_blank" rel="external">http://blog.csdn.net/u010405231/article/details/52210401</a></p>
+<p>总结一下的就是不管我们要通过注解获取到任何类型的元素，我们都要明白自己之后要做的事情是：1.它类型是什么 2.它包名是什么 3.它的类名方法名成员名变量名是什么？<br>这3件事情我们一步步解决；<br>1.它的类型：这个很简单了通过我们注解Target时候我们就有了大致的方向，当然有时候target可能是复数形式的时候，我们可以通过Element的TypeMirror的TypeKind作为判断:</p>
+<p>TypeMirror mirror = ele.asType();<br>if (mirror.getKind() == TypeKind.TYPEVAR); //成员变量<br>if (mirror.getKind() == TypeKind.EXECUTABLE);／／方法或构造函数<br>if (mirror.getKind() == TypeKind.VOID);／／空成员<br>if (mirror.getKind() == TypeKind.DECLARED);／／Class或者Interface</p>
+<p>TypeKind还有很多比如package，array，boolean等；<br>需要细说的就是如果是是typevar的话可以通过下面的代码获取到具体的type<br>TypeVariable variable = (TypeVariable)typeMirror;<br>typeMirror = variable.getUpperBound();</p>
+<p>2.它的包名：经过第一步明确类型之后的Element肯定是能cast成我们前面所说的几类Element之一，这时候我们获取包名就特别轻松愉快了；<br>TypeElement typeElement = (TypeElement) ele.getEnclosingElement();<br>Name packageName = elementUtils.getPackageOf(typeElement).getQualifiedName();//这里的elementUtils就是我们在init中通过processingEnv初始化的帮助类，他能帮助我们获取所有element所在包的全包名以及包名（getSimpleName）<br>String package = packageName.toString();</p>
+<p>3.它的类名方法名成员名变量名是什么：这个问题首先是要建立在1这个问题上，我们做成表格的话就是。 成员变量—TypeElement—类名<br>Class—TypeElement—类名<br>Method—ExecutableElement—方法名，参数类型，参数名<br>Parameter–VariableElement—参数类型，参数名</p>
+<p>接着我们分别看看应该怎么获取吧</p>
+<p>PackageElement packageElement = elementUtils.getPackageOf(typeElement);<br>String packageName = packageElement.getQualifiedName().toString();<br>String qulifiedName = typeElement.getQualifiedName().toString();<br>String simpleName = typeElement.getSimpleName().toString();<br>对一般成员也就是TypeElement我们分别获取了包名，类全名，类名，</p>
+<p>接口方法类通过分别两次强转来获取类名以及方法名<br>ExecutableElement executableElement = (ExecutableElement) element;</p>
+<p>//非对应的Element，通过getEnclosingElement转换获取<br>TypeElement classElement = (TypeElement) element<br>.getEnclosingElement();</p>
+<p>//全类名<br>String fullClassName = classElement.getQualifiedName().toString();<br>//类名<br>String className = classElement.getSimpleName().toString();<br>//包名<br>String packageName = packageElement.getQualifiedName().toString();<br>//方法名<br>String methodName = executableElement.getSimpleName().toString();</p>
+<p>//取得方法参数列表<br>List&lt;? extends VariableElement&gt; methodParameters = executableElement.getParameters();<br>//参数类型列表<br>List<string> types = new ArrayList&lt;&gt;();<br>for (VariableElement variableElement : methodParameters) {<br>TypeMirror methodParameterType = variableElement.asType();<br>if (methodParameterType instanceof TypeVariable) {<br>TypeVariable typeVariable = (TypeVariable) methodParameterType;<br>methodParameterType = typeVariable.getUpperBound();</string></p>
+<p>}<br>//参数名<br>String parameterName = variableElement.getSimpleName().toString();<br>//参数类型<br>String parameteKind = methodParameterType.toString();<br>types.add(methodParameterType.toString());<br>}</p>
+<p>搞清楚了我们的注解获取的对象是谁来自哪里 那么下一步就是要通过javapoet来生产可利用的class文件咯<br>关于javapoet github上readme把基本所有用法都说的比较清楚了<br>我这里就比较分析一下里面占位符各自间的区别吧<br>$L:for Literals 就是将替代的文本带入到原文占位符中It accepts $L to emit a literal value in the output. This works just like Formatter’s %s<br>$S:for string 将替代文本加上了引号带入原文When emitting code that includes string literals, we can use $S to emit a string, complete with wrapping quotation marks and escaping<br>$T:for Type 指代的不是文本而是一个类名 they make our code easier to understand. And JavaPoet is on board. It has rich built-in support for types, including automatic generation of import statements. Just use $T to reference types<br>$N:for Name 指代的同样由javapoet生产的类名 Generated code is often self-referential. Use $N to refer to another generated declaration by its name.</p>
+<p>最后我们的demo我也不知道啥时候能上来跟大家见面= =谢谢</p>
+<p>我们需要生成的类：<br>public class TemplateClass {</p>
+<p>public TemplateClass(final Activity activity, final String Regx, String targetName, String methodName, int id) {<br>activity.targetName = (EditText)activity.findViewById(id);<br>activity.targetView.setOnFocusChangeListener(new View.OnFocusChangeListener() {<br>@Override<br>public void onFocusChange(View v, boolean hasFocus) {<br>if (!hasFocus){<br>String tex = activity.targetName.getText().toString;<br>boolean isValid = Utils.regx(tex,Regx);<br>if (!isValid){<br>activity.methodName();<br>}<br>}<br>}<br>});</p>
+<p>}<br>}</p>
+<p>正则工具类:<br>public static boolean regx(String target,String reg){<br>Pattern pattern = Pattern.compile(reg);<br>Matcher matcher = pattern.matcher(target);<br>return matcher.matches();<br>}</p>
+<p>最low的生成方法：  private static void output() {<br>MethodSpec c = MethodSpec.constructorBuilder().addParameter(ACTIVITY,”activity”)<br>.addParameter(VIEW,”view”)<br>.addParameter(String.class,”regx”)<br>.addParameter(String.class,”targetName”)<br>.addParameter(String.class,”method”)<br>.addParameter(int.class,”id”)<br>.addStatement(“activity.targetName = (EditText)activity.findViewById(id)”)<br>.beginControlFlow(“activity.targetView.setOnFocusChangeListener(new View.OnFocusChangeListener()”)<br>.addAnnotation(Override.class)<br>.beginControlFlow(“public void onFocusChange(View v, boolean hasFocus)”)<br>.beginControlFlow(“if(!hasFocus)”)<br>.addStatement(“String tex = activity.targetName.getText().toString;”)<br>.addStatement(“boolean isValid = Utils.regx(tex,Regx)”)<br>.beginControlFlow(“if (!isValid)”)<br>.addStatement(“activity.methodName()”)<br>.endControlFlow()<br>.endControlFlow()<br>.endControlFlow()<br>.endControlFlow().build();<br>TypeSpec typeSpec = TypeSpec.classBuilder(“HelloWorld”)//HelloWorld是类名<br>.addMethod(c)  //在类中添加方法<br>.build();</p>
+<p>JavaFile javaFile = JavaFile.builder(“com.amber.lib”,typeSpec).build();<br>try {<br>javaFile.writeTo(System.out);<br>} catch (IOException e) {<br>e.printStackTrace();<br>}<br>}</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/01/auto-fill/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amberkira Yunnel">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Amberkira">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/01/auto-fill/" itemprop="url">
+                  auto_fill
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-01T09:30:35+08:00">
+                2017-08-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="AutoFill-Framework"><a href="#AutoFill-Framework" class="headerlink" title="AutoFill Framework"></a>AutoFill Framework</h1><p>我们一直设计的app都有自动填充的功能，不过怎么样安全持有用户这部分数据却是很敏感的事情，现在google在android O 中提供了系统级别的自动填充框架以供我们使用，这对用户以及我们开发人员来说都是好事，google推出这个框架的主要目的还是为了减少用户填表时间，以及最小化用户的输入错误带来的糟糕体验。</p>
+<h2 id="提前准备"><a href="#提前准备" class="headerlink" title="提前准备"></a>提前准备</h2><p>因为整个autofill框架是以service形式存在的，所以用户手机必须先行设置，设置路径是： <strong>Settings &gt; System &gt; Languages &amp; input &gt; Advanced &gt; Input assistance &gt; Autofill service</strong> 整个服务需要用户提前授权。<br><a href="https://github.com/googlesamples/android-AutofillFramework/blob/master/README.md" target="_blank" rel="external">autofill sample</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/NestedScrollandBehavior-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2183,7 +2483,7 @@ appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
